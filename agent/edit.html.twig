@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Edit User{% endblock %}
+
+{% block content %}
+  <div class="content">
+
+   <div class="card-header header-elements-inline" style="background-color:Teal">
+						<h3 class="card-title" style="color:white">Modifier {{user.nom}}</h3>
+						<div class="header-elements">
+							 <a class="btn btn-info" style="width:50px" href="{{ path('app_agent_index') }}"><i class="icon-reply"></i> </a>
+	                	</div>
+					</div>
+					<br />
+   	<div class="card">
+							
+							<div class="card-body">
+
+    {{ include('agent/_form.html.twig', {'button_label': 'Update'}) }}
+
+   
+{% endblock %}

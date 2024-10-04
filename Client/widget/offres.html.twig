@@ -1,0 +1,36 @@
+<div id="All_Categories" class="panel-collapse collapse in show" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                      <aside class="widget widget_categories"> 
+                        <!-- Squared THREE -->
+					{% for offre in offres|slice(0, 3)%}
+				  <ul>
+						
+							<li>
+
+							
+								<div class="left_latest_thumb">
+								<a href="#">{% for image in offre.images|slice(0, 1) %}</a>
+                                <br>
+               <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="135" height="105" /><br>
+			      {% endfor %}
+								</div>	
+								<div class="lates_event_right_side">
+                                <br>
+									<h4><a href="#">{{ offre.titre }}</a></h4>
+                                    <br>
+									<p style="color:#f08080">{{ offre.agence.nom}}</p>
+									<div class="doller_event"> </div>
+								</div>
+								
+							</li>
+							
+							
+							
+					
+                        </ul>
+                        <hr>
+						   {% endfor %}	
+                      </aside>
+					
+                    </div>
+                  </div>

@@ -1,0 +1,356 @@
+{% extends 'base.html.twig' %}
+
+{% block titlepage %}
+{% endblock%}
+{% block dashboard %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dashboard</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset("dashbord/images/favicon.png")}}">
+    <!-- Pignose Calender -->
+    <link href="{{ asset("dashbord/plugins/pg-calendar/css/pignose.calendar.min.css")}}" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="{{ asset("dashbord/plugins/chartist/css/chartist.min.css")}}">
+    <link rel="stylesheet" href="{{ asset("dashbord/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css")}}">
+    <!-- Custom Stylesheet -->
+    <link href="{{ asset("dashbord/css/style.css")}}" rel="stylesheet">
+
+</head>
+{%endblock%}
+{%block content%}
+<body>
+
+   
+       
+
+            <div class="container-fluid mt-3">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-1">
+                            <div class="card-body" style="padding-bottom: 0px;">
+                                <h3 class="card-title text-white">Offres</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white">{{countoffres|raw}} offres </h2>
+                                  
+                                 <span class="float-right display-5 opacity-5" style="margin-bottom: -12px;"><img src="{{ asset('images/offer.png') }}" width="50" height="50"  alt=""style="margin-left: 145px;margin-top: -81px;"></span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-2">
+                            <div class="card-body" style="padding-bottom: 0px;">
+                                <h3 class="card-title text-white">Reservations</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white">{{countreservation|raw}} Reservations</h2>
+                                    <p class="text-white mb-0"></p>
+                                </div>
+                                <span class="float-right display-5 opacity-5" style="margin-bottom: -12px;"><img src="{{ asset('images/reserve.png') }}" width="50" height="50"  alt=""style="margin-left: 145px;margin-top: -81px;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-3">
+                            <div class="card-body" style="padding-bottom: 0px;">
+                                <h3 class="card-title text-white">Hotels</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white">{{counthotel|raw}}  Hotels</h2>
+                                    <p class="text-white mb-0"></p>
+                                </div>
+                                <span class="float-right display-5 opacity-5" style="margin-bottom: -12px;"><img src="{{ asset('images/review.png') }}" width="50" height="50"  alt=""style="margin-left: 145px;margin-top: -81px;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-4">
+                            <div class="card-body" style="padding-bottom: 0px;">
+                                <h3 class="card-title text-white">Catégories</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white">{{countCategorie|raw}}Catégories</h2>
+                                    <p class="text-white mb-0"></p>
+                                </div>
+                                 <span class="float-right display-5 opacity-5" style="margin-bottom: -12px;"><img src="{{ asset('images/categories.png') }}" width="50" height="50"  alt=""style="margin-left: 145px;margin-top: -81px;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                              <div class="col-lg-12">
+                                       <div class="row">
+                    <div class="col-lg-12">
+                     <div class="card-header header-elements-inline" style="background-color: darksalmon;" style="padding-bottom:230px">
+  
+						<h3 class="card-title" style="color:white">Les 5 derniers Reservations</h3>
+                        <div class="header-elements"  >
+	                	</div>
+                           </div>
+                           <br>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="active-member">
+                                    <div class="table-responsive">
+                                        <table class="table table-xs mb-0">
+                                            <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+
+                                            <thead >            <tr>
+
+
+
+                                            <th>Date creation</th>
+               <th>Client </th>
+                <th>Offre </th>
+                <th>Grille Tarifaire </th>
+
+                <th>Statut</th>
+                 {% if is_granted('ROLE_AGENT')%}  
+                <th colspan="4">Action</th>
+                 {% elseif is_granted('ROLE_RESPONSABLE')%}
+                     <th colspan="4">Action</th>
+                     {% endif %} 
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+               
+                 <td>{{reservation.dateCreation|date('Y/m/d')}}</td>
+                  <td>{{  reservation.client.nom}}</td>
+                   <td>{{ reservation.offre.titre}}</td>
+                     
+                 <td> Du {{ reservation.grilletarifaire.datedebut|date('d/m/Y')}}  Au {{reservation.grilletarifaire.datefin|date('d/m/Y')}}</td>
+       <td>         {% if  reservation.status =='non_traitee' %} <span class="badge badge-danger">{{ reservation.status  }}</span></center> {% elseif reservation.status =='en_cours' %}  <span class="badge badge-secondary">{{ reservation.status  }}</span></center> {% else %} <span class="badge badge-success">{{ reservation.status  }}</span></center>{% endif %}</td>
+              <td colspan="4">
+                     {% if is_granted('ROLE_AGENT')%}  
+                  <a class="btn edit btn-warning"  href="{{ path('app_reservation_edit', {'id': reservation.id}) }}"style="width:40px"><i class="icon-pen" style="color:white"></i></a>
+                                    {{ include('reservation/_delete_form.html.twig') }}
+
+                     {% elseif is_granted('ROLE_RESPONSABLE')%}
+                            <a class="btn edit btn-warning"  href="{{ path('app_reservation_edit', {'id': reservation.id}) }}"style="width:40px"><i class="icon-pen" style="color:white"></i></a>
+                                   {{ include('reservation/_delete_form.html.twig') }}
+
+                     {% endif %}
+
+           </td> 
+             </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+         
+    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                    </div>
+                   </div>
+
+
+                
+
+                <div class="row">
+ <div class="col-lg-12">
+                                       <div class="row">
+                    <div class="col-lg-12">
+                     <div class="card-header header-elements-inline" style="background-color: indianred;" style="padding-bottom:230px">
+  
+						<h3 class="card-title" style="color:white">Les 5 derniers Clients</h3>
+                        <div class="header-elements"  >
+	                	</div>
+                           </div>
+                           <br>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="active-member">
+                                    <div class="table-responsive">
+                                        <table class="table table-xs mb-0">
+                                            <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+
+                                            <thead >            <tr>
+              <th>ID</th>
+                <th>nom</th>
+                <th>prenom</th>
+                <th>email</th>
+                      <th><center>adresse</center></th>
+                        <th><center>telephone</center></th>
+         
+           </div> </tr>
+        </thead>
+        <tbody>
+       
+        {% for reservation in reservations|slice(0,5) %}
+       
+            <tr>
+                <td>{{ reservation.client.id }}</td>
+                <td>{{ reservation.client.nom }}</td>
+                <td>{{ reservation.client.prenom }}</td>
+                
+                       <td>{{ reservation.client.email }}</td>
+              <td>{{ reservation.client.adresse }}</td>
+               
+       
+     
+             <td>{{ reservation.client.telephone }}</td>
+     
+       </center>
+               
+            </tr>
+            
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+              
+        {% endfor %}
+      
+        </tbody>
+    </table></div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                    </div>
+                   </div>
+             
+                <div class="row">
+                    <div class="col-lg-12">
+                     <div class="card-header header-elements-inline" style="background-color: darkseagreen;" style="padding-bottom:230px">
+  
+						<h3 class="card-title" style="color:white">Listes des Agents</h3>
+                        <div class="header-elements"  >
+	                	</div>
+                           </div>
+                           <br>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="active-member">
+                                    <div class="table-responsive">
+                                        <table class="table table-xs mb-0">
+                                            <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+
+                                            <thead >            <tr>
+              <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                   
+                <th colspan="4">actions</th>
+           </div> </tr>
+        </thead>
+        <tbody>
+       
+        {% for user in users %}
+        {%  if  user.roles==["ROLE_AGENT"]%}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.email }}</td>
+ 
+                 <td colspan="4">
+                     {{ include('agent/show.html.twig') }}
+                   
+                   
+                </td>
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+              
+        {% endfor %}
+      
+        </tbody>
+    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+   <input id="world-map" name="world-map" type="hidden" value="xm234jq">
+               
+           
+                       
+                      
+                             
+
+                            
+                           
+                             </input>     
+                   
+               
+
+               
+
+           
+            <!-- #/ container -->
+      
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+       
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="{{ asset("dashbord/plugins/common/common.min.js")}}"></script>
+    <script src="{{ asset("dashbord/js/custom.min.js")}}"></script>
+    <script src="{{ asset("dashbord/js/settings.js")}}"></script>
+    <script src="{{ asset("dashbord/js/gleek.js")}}"></script>
+    <script src="{{ asset("dashbord/js/styleSwitcher.js")}}"></script>
+
+    <!-- Chartjs -->
+    <script src="{{ asset("dashbord/plugins/chart.js/Chart.bundle.min.js")}}"></script>
+    <!-- Circle progress -->
+    <script src="{{ asset("dashbord/plugins/circle-progress/circle-progress.min.js")}}"></script>
+    <!-- Datamap -->
+    <script src="{{ asset("dashbord/plugins/d3v3/index.js")}}"></script>
+    <script src="{{ asset("dashbord/plugins/topojson/topojson.min.js")}}"></script>
+    <script src="{{ asset("dashbord/plugins/datamaps/datamaps.world.min.js")}}"></script>
+    <!-- Morrisjs -->
+    <script src="{{ asset("dashbord/plugins/raphael/raphael.min.js")}}"></script>
+    <script src="{{ asset("dashbord/plugins/morris/morris.min.js")}}"></script>
+    <!-- Pignose Calender -->
+    <script src="{{ asset("dashbord/plugins/moment/moment.min.js")}}"></script>
+    <script src="{{ asset("dashbord/plugins/pg-calendar/js/pignose.calendar.min.js")}}"></script>
+    <!-- ChartistJS -->
+    <script src="{{ asset("dashbord/plugins/chartist/js/chartist.min.js")}}"></script>
+    <script src="{{ asset("dashbord/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js")}}"></script>
+
+
+
+    <script src="{{ asset("dashbord/js/dashboard/dashboard-1.js")}}"></script>
+
+</body>
+
+</html>
+{%endblock%}

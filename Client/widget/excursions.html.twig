@@ -1,0 +1,30 @@
+<aside class="widget hotel_widgets">
+								<h4 class="widget-title">Excursions</h4>
+								
+                                 {% for excursion in excursions|slice(0, 1)%}
+								<ul>
+									<li>
+										 {% for image in excursion.images|slice(0, 1) %}
+               <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+                      
+        {% endfor %}
+										<div>
+											<h4>
+												<a href="{{ path('app_excursion_front') }}">{{ excursion.titre }}</a>
+											</h4>
+											<p> {% for excursion in excursion.pays|slice(0, 1) %}
+            
+                  <td>{{ excursion.nom}}</td>
+               
+            
+            {% endfor %}</p>
+											
+
+										</div>
+									</li>
+							
+							
+
+								</ul>
+   {% endfor %}
+							</aside>

@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    {% if app.request.attributes.get('_route') == 'app_croisiere_excursion_edit' %}
+        <h2>Images</h2>
+        {% for image in croisiere_excursion.excursion.images %}
+            <div>
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+
+              
+            </div>
+        {% endfor %}
+    {% endif %}
+       <button  class="btn btn-info" style="width:100px;margin-left: 90%;position: relative;"  > <i class="icon-floppy-disk"></i> {{ button_label|default('Valider') }}</button>
+{{ form_end(form) }}

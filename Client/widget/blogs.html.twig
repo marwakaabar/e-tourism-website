@@ -1,0 +1,17 @@
+<aside class="widget widget_recent_entries">
+                        <h4 class="widget-title">Posts Récents</h4>
+					
+						 {% for article in articles|slice(0, 3)%}
+                        <ul>
+                          <li>  {% for image in article.images|slice(0, 1) %}
+             <a href="{{path('app_article')}}">  <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="91" height="81"></a>
+                      
+        {% endfor %}
+                            <div>
+                              <h4><a href="{{path('app_article')}}">{{ article.title }} </a></h4>
+							  <p> {{ article.pays.nom }}</p>
+                          </li>
+                         
+                        </ul>
+                        {% endfor %}
+							</aside>

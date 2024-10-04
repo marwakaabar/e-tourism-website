@@ -1,0 +1,23 @@
+<aside class="widget widget_recent_entries">
+			 <h4 class="widget-title"> Sites </h4>
+			 <div class="widgett">
+			 {% for  site in sites|slice(0, 3)%}
+			 <ul>
+		       <li> {% for image in site.images|slice(0, 1) %}
+              <a href="#"> <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="78" height="67">
+                      </a>
+             {% endfor %}
+		         	<div class="lates_event_right_side">
+				 	<h4><a href="#">{{ site.nom }}</a></h4>
+			 
+				 <p> {{ site.description|slice(0, 70)|raw }}...</p>
+		       </div>
+		      </li> 
+             
+		
+                 		  
+	        </ul>
+			{% endfor %}
+	       </div>
+			 
+			 </aside>

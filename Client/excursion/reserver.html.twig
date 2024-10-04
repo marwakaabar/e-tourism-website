@@ -1,0 +1,260 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+ <div id="content_wrapper"> 
+    <!--page title Start-->
+   
+    <!--page title end-->
+    <div class="clearfix"></div>
+    	{% for excursion in excursion %}
+    <div class="full_width destinaion_sorting_section">
+      <div class="container">
+        <div class="row space_100"> 
+       
+          <div class="col-lg-12">
+            <div class="tour_package_booking_section"> 
+              <!-- package tabs start -->
+              <div id="tour_booking_tabs"> 
+                <!-- tabs start -->
+               
+                <!-- tabs end --> 
+                <!-- booking_details Start -->
+               
+                 
+                    <!--  tab inner section two Start -->
+                    <div class="tab_inner_section flight_inner_section">
+                      <div class="heading_tab_inner">
+                        <h5>Details Offre</h5>
+                     </div>
+                      <div class="tab_inner_body full_width">
+                        <div class="flight_review_area full_width">
+                          <div class="col-lg-14 col-md-14"> 
+                            <!--  review area start -->
+                            <div class="row">
+                              <div class="col-lg-4 col-md-4">  {% for image in excursion.images|slice(0, 1)%} 
+			 
+													 <img src="{{ asset('/uploads/'~image.name) }}" alt="review image" width="237" height="165"> 
+
+													
+			 {% endfor %} </div>
+                              <div class="col-lg-8 col-md-8">
+                                <div class="review_content">
+                                  <div class="top_head_bar">
+                                    <h4>{{ excursion.titre }}</h4>
+                                    <span class="country_span"> {% for excursion in excursion.pays %}
+            
+                 {{ excursion.nom}}
+               
+            
+            {% endfor %}</span> </div>
+                                  <div class="review_star_cover">
+                                    <div class="bottom_star_rating" style="background-color:#ffcc00;">{{excursion.agence}}</div>
+                                   </div>
+                                </div>
+                              </div>
+                              <!--  review area end --> 
+                            </div>
+                            <!-- row --> 
+                          </div>
+                          <!--  col-lg-9 -->
+                          
+                          <div class="right_includes_hotel col-lg-14 col-md-14" style="display: ;margin-left: 334px;">
+                          <div class="check_in_out_wrap">
+                            <div class="check_in">
+                              <label><i class="fa fa-plane-departure"></i></label>
+                              <div class="check_in_box" ><span class="day"> {{grilletarifaire.datedebut|date('M')}} </span> <span class="date">{{grilletarifaire.datedebut|date('d')}} </span> </span></div>
+                            </div>
+                            <div class="check_in">
+                              <label> <i class="fa fa-plane-arrival"></i></label>
+                              <div class="check_in_box"><span class="day"> {{grilletarifaire.datefin|date('M')}} </span> <span class="date">{{grilletarifaire.datefin|date('d')}} </span> </span></div>
+                            </div>
+                          </div>
+                        </div>
+                       </div>
+                        <!-- tab include area Start -->
+                        
+                      
+                        <!-- tab include area End --> 
+                        <!-- tab include area Start -->
+                         <div class="inludes_hotel_booking" style="margin-left: 3px;">
+                       <div class="row">
+                        <div class="left_lists col-lg-6 col-md-6" style="margin-top: 31px;">
+                        
+                          <table>
+                            <tr style="display: ruby;">
+                              <td class="label_list" >type chambre</td>
+                              <td>-</td>
+                              <td style="display: block;color:black;  font-weight: bold;">Chambre Double</td>
+                            </tr>
+                            <tr style="display: ruby;">
+                              <td class="label_list" >Nombre d'Adults</td>
+                              <td style="display: block;"> - </td>
+                              <td style="display: block;color:black;  font-weight: bold;">{{adultes}} Adults</td>
+                            
+                            </tr>
+                            <tr style="display: table-row-group;">
+
+                              <td class="label_list" style="display: ruby;">Nombre d'Enfants</td>
+                         <td>-</td>
+                              <td style="display: block;color:black;  font-weight: bold;">{{enfants}} Enfants</td>
+                            </tr>
+                            <tr style="display: ruby;" >
+                                 <center>
+                              <td class="label_list">duration</td>
+                              <td>-</td>
+                              <td class="bold" style="display: block;color:black;  font-weight: bold;"> {% set difference = date(grilletarifaire.datefin).diff(grilletarifaire.datedebut).format('%d') %}
+            {{ difference }} Jours</td>
+            </center>
+                            </tr>
+                            
+                          </table>
+                        </div>
+                        <div class="left_lists col-lg-6 col-md-6" style="margin-top: 31px;">
+                          <div class="table_bold">
+                            <table>
+                            <tr style="display: ruby;">
+                              <td class="label_list" style="display: ruby;">Prix Adulte en Chambre Double  </td>
+                              <td>-</td>
+                                  <td class="bold"style="display: block;color:black;  font-weight: bold;">{{ grilletarifaire.prix}}</td>
+                            </tr>
+                             <tr style="display: ruby;">
+                                     <td class="label_list" style="display: ruby;">Prix Enfant  </td>
+                                <td>-</td>
+                                <td class="bold" style="display: block;color:black;  font-weight: bold;">{{grilletarifaire.PrixEnfant}}</td>
+                            </tr>
+                             
+                             
+                                
+                            </table>
+                          <table>
+                             <tr style="display: table-row-group;">
+                                <td class="label_list" style="display: ruby;">Prix total adultes  </td>
+                                <td>-</td>
+                                <td class="bold" style="display: block;color:black;  font-weight: bold;">{{ (adultes*grilletarifaire.prix) }}</td>
+                              </tr>
+                              <tr style="display: ruby;">
+                                <td class="label_list">Prix total enfants </td>
+                                <td>-</td>
+                                <td class="bold" style="display: block;color:black;  font-weight: bold;">{{ (enfants*grilletarifaire.PrixEnfant) }}</td>
+                              </tr>
+                              
+                              </table>
+                              
+                          </div>
+                          
+                        </div>
+                       </div>
+                        </div>
+                         <div class="full_width total_price_row" style="margin-left: 450px;
+margin-top: 18px;">
+                    <p style="color:black;  font-weight: bold;">Total à payer :</p>
+                    <h2 style="color: darkblue;background: darksalmon;">{{(enfants*grilletarifaire.PrixEnfant)+(adultes*grilletarifaire.prix)}} DT</h2>
+                  </div>
+                        <!-- tab include area End --> 
+                      </div>
+                      <!--  tab inner body  End--> 
+                      
+                    </div>
+                    <!-- tab inner section end --> 
+                    
+                  </div>
+                  
+                  <!-- total row Start-->
+                 
+                  
+                  <!-- proceed button -->
+                 
+                  <!-- proceed button --> 
+               
+                <!-- booking_details End --> 
+                <!-- personal_info Start -->
+                  <div class="tab_inner_section flight_inner_section">
+                      <div class="heading_tab_inner">
+                        <h5>Vos informations</h5>
+                     </div>
+                            <div class="tab_inner_body full_width">
+                        <div class="flight_review_area full_width">
+                          <div class="col-lg-10 col-md-9"> 
+                            {{ form_start(form)  }}
+    {{ form_widget(form) }}
+    <input name="periode" value="{{grilletarifaire.id}}" type="hidden">
+    <br><br>
+    <button  class="btn btn-secondary  btn-block rounded-0 btn-resa"  style="width:250px;margin-left: 90%;position: relative;background-color: #b7cd3b;
+    border-color: #b7cd3b;"  > <i class="icon-floppy-disk"></i> {{ button_label|default('Confirmer votre reservation') }}</button>
+{{ form_end(form) }}
+
+                          </div>
+                          <!--  package_booking_form END --> 
+                        </div>
+                          </div>
+                      </div>
+                      </div>
+                          </div>
+                      </div>
+                      <!--  tab inner three section End --> 
+                      <!-- proceed button -->
+                      <div class="full_width t_align_c">
+                      </div>
+                        <!--  tab_inner_body end -->
+                        
+                      <!-- proceed button -->
+                    </form>
+                  </div>
+                  <!--  inner container end --> 
+                </div>
+                <!-- personal_info End --> 
+                <!-- payment_info Start -->
+              
+                          <!-- Review content main -->
+                          
+                          
+                        </div>
+                        <!-- payment_details_main end --> 
+                      </div>
+                      <!--  tab_inner_body end --> 
+                    </div>
+                    <!--  tab inner three section End --> 
+                    <!--  tab inner  section start -->
+                    
+                    <!--  tab inner three section End --> 
+                  </div>
+                  <!-- inner_container end --> 
+                </div>
+                <!-- content area end --> 
+                <!-- payment_info End --> 
+                
+                <!-- confirmation Start -->
+                
+                        <!-- payment_details_main end --> 
+                        <!-- table section main start-->
+                      
+                      <!--  tab_inner_body end --> 
+                    </div>
+                    <!--  tab inner three section End --> 
+                    <!-- information_section start -->
+                    
+                      </div>
+                      <!-- information_table End --> 
+                    </div>
+                    <!-- information_section End --> 
+                    
+                    <!-- information_section start -->
+                  
+                    <!-- information_section End --> 
+                  </div>
+                  <!--  inner container --> 
+                </div>
+                <!-- confirmation End --> 
+              </div>
+              <!-- package tabs End --> 
+            </div>
+            <!-- right main start --> 
+          </div>
+          <!-- col-lg-9-end --> 
+        </div>
+        <!--  row main --> 
+      </div>
+      <!-- container --> 
+    </div>
+    <!-- main wrapper -->
+         {%endfor %}
+          {%endblock %}

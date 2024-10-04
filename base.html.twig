@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+		<title>Dashboard</title>
+
+		<!-- Global stylesheets -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('admin/global_assets/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css"/>
+
+		<link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('admin/assets/css/bootstrap_limitless.min.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('admin/assets/css/layout.min.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('admin/assets/css/components.min.css') }}" rel="stylesheet" type="text/css"/>
+		<link href="{{ asset('admin/assets/css/colors.min.css') }}" rel="stylesheet" type="text/css"/> {% block style %}{% endblock %}
+		<!-- /global stylesheets -->
+
+		<!-- Core JS files -->
+		<script src="{{ asset('admin/global_assets/js/main/jquery.min.js') }}"></script>
+		<script src="{{ asset('admin/global_assets/js/main/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ asset('admin/global_assets/js/plugins/loaders/blockui.min.js') }}"></script>
+		<!-- /core JS files -->
+
+		<!-- Theme JS files -->
+		<script src="{{ asset('admin/global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
+		<script src="{{ asset('admin/global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
+		<script src="{{ asset('admin/global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
+		<script src="{{ asset('admin/global_assets/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
+		<script src="{{ asset('admin/global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
+		<script src="{{ asset('admin/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+
+		<script src="{{ asset('admin/assets/js/app.js') }}"></script>
+		<script src="{{ asset('admin/global_assets/js/demo_pages/dashboard.js') }}"></script>
+
+		{% block script %}{% endblock %}
+		<!-- /theme JS files -->
+
+	</head>
+
+	<body>
+		<!-- Main navbar -->
+		<div class="navbar navbar-expand-md navbar-dark">
+			<div class="navbar-brand">
+
+
+				<h1 style="color: white; font-family: fangsong;" >Dicovery Travel</h1>
+
+			</div>
+
+
+			<div class="collapse navbar-collapse" id="navbar-mobile">
+
+
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
+							<i class="icon-paragraph-justify3"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+
+		<div></div>
+				<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
+					<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+						<span>{{app.user.email}}</span>
+					</a>
+				</a>
+
+				<div class="dropdown-menu dropdown-menu-right">
+			
+					{% if is_granted('ROLE_ADMIN')%}	<a href="{{ path('app_admin_edit', {id: app.user.id})}}"  class="dropdown-item"><i class="icon-cog5">My profile</i></a>{%endif%}
+		        	{% if is_granted('ROLE_RESPONSABLE')%}	<a href="{{ path('app_agence_edit', {id: app.user.agence.id})}}" class="dropdown-item"><i class="icon-cog5"></i> Parametre de l'agence</a>{%endif%}
+					<a href="{{ path('app_logout') }}" class="dropdown-item"><i class="icon-switch2"></i>Logout</a>
+				</div>
+			</li>
+		</div>
+
+		<div
+			class="page-content">
+			<!-- Main sidebar -->
+			<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+				<!-- Sidebar mobile toggler -->
+				<div class="sidebar-mobile-toggler text-center">
+					<a href="#" class="sidebar-mobile-main-toggle">
+						<i class="icon-arrow-left8"></i>
+					</a>
+					Navigation
+					<a href="#" class="sidebar-mobile-expand">
+						<i class="icon-screen-full"></i>
+						<i class="icon-screen-normal"></i>
+					</a>
+				</div>
+				<!-- /sidebar mobile toggler -->
+
+				<!-- Sidebar content -->
+				<div
+					class="sidebar-content">
+					<!-- Main navigation -->
+					<div class="sidebar-user">
+					<div class="card-body">
+						<div class="media">
+							<div class="mr-3">
+							
+								<a href="#"><img src="{{ asset('admin/global_assets/images/user.webp') }}" width="38" height="38" class="rounded-circle" alt=""></a>
+							</div>
+
+							<div class="media-body">
+								<div class="media-title font-weight-semibold">{{app.user.nom }} {{app.user.prenom}}</div>
+								<div class="font-size-xs opacity-50">
+									<i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; {% if is_granted('ROLE_RESPONSABLE')%}{{app.user.agence}}{% elseif is_granted('ROLE_AGENT') %}{{app.user.agence}} {% else %} {{app.user.adresse}}{% endif %} 
+								</div>
+                              
+							</div>
+
+							<div class="ml-3 align-self-center">
+								<a href="{{ path('app_admin_edit', {id: app.user.id})}}" class="text-white"><i class="icon-cog3"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+					<div class="card card-sidebar-mobile">
+						<ul
+							class="nav nav-sidebar" data-nav-type="accordion">
+							<!-- Main -->
+							<li class="nav-item-header">
+								<div class="text-uppercase font-size-xs line-height-xs">
+							
+								</div>
+								<i class="icon-menu" title="Main"></i>
+							</li>
+						{% block dashboard %}
+                            {%endblock%}
+								{% if is_granted('ROLE_ADMIN') %}
+							
+							<li class="nav-item">
+								
+								<a href="{{ path('app_admin_dashbord') }}" class="nav-link"><img src="{{ asset('images/monitor.png') }}" width="20" height="20"  alt="">&nbsp; Dashboard</a>
+							</li>
+					
+				<li class="nav-item nav-item-submenu">
+						<a href="#" class="nav-link"><img src="{{ asset('images/man.png') }}" width="20" height="20"  alt="">&nbsp; Gestion des Utilisateurs</a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
+								<li class="nav-item"><a href="{{ path('app_user_index') }}" class="nav-link">Liste des Administrateurs</a></li>
+									</ul>
+                                    
+								
+             
+							<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
+								<li class="nav-item"><a href="{{ path('responsable_index') }}" class="nav-link">Liste des Responsables</a></li>
+									</ul>
+                                    	<ul class="nav nav-group-sub" data-submenu-title="Starter kit">
+								<li class="nav-item"><a href="{{ path('agent_index') }}" class="nav-link">Liste des Agents</a></li>
+									</ul>
+								</li>
+							<li class="nav-item nav-item-submenu">
+									<a href="app_offre_index" class="nav-link"><img src="{{ asset('images/offer.png') }}" width="20" height="20"  alt="">&nbsp; Offres</a>
+                                    
+									<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="{{path('app_omra_admin_index')}}" class="nav-link"><img src="{{ asset('images/kaaba.png') }}" width="20" height="20"  alt="">&nbsp; Omra</a></li>
+									</ul>	
+									<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="{{path('app_croisiere_user_index')}}" class="nav-link"><img src="{{ asset('images/cruise.png') }}" width="20" height="20"  alt="">&nbsp; Croisière</a></li>	
+									</ul>
+										<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="{{path('app_voyage_admin_index')}}" class="nav-link"> <img src="{{ asset('images/airplane.png') }}" width="20" height="20"  alt="">&nbsp; Voyage Organisé</a></li>	
+									</ul>
+									<ul class="nav nav-group-sub ">
+										<li class="nav-item"><a href="{{path('app_rondonnee_admin_index')}}" class="nav-link"> <img src="{{ asset('images/trekking.png') }}" width="20" height="20"  alt="">&nbsp; Randonnée</a></li>
+									</ul>
+									<ul class="nav nav-group-sub ">
+										<li class="nav-item"><a href="{{path('app_excursion_user_index')}}" class="nav-link"> <img src="{{ asset('images/trekking.png') }}" width="20" height="20"  alt="">&nbsp; Excursion</a></li>
+									</ul>		
+								
+								</li>
+								
+						<li class="nav-item">
+							<a href={{ path('app_agence_index') }} class="nav-link"><img src="{{ asset('images/travel-agent.png') }}" width="20" height="20"  alt="">&nbsp; Agences </a>
+						</li>
+						<li class="nav-item">
+							<a href="{{ path('app_hotel_index') }}" class="nav-link"><img src="{{ asset('images/review.png') }}" width="20" height="20"  alt="">&nbsp; Hotels</a>
+								</li>
+
+								<li class="nav-item">
+								<a href="{{ path('app_pays_index') }}" class="nav-link"><img src="{{ asset('images/flag.png') }}" width="20" height="20"  alt="">&nbsp; Pays</a>
+									
+								</li>
+								<li class="nav-item">
+									<a href="{{ path('app_sites_index') }}" class="nav-link"><img src="{{ asset('images/eiffel-tower.png') }}" width="20" height="20"  alt="">&nbsp;  Sites</a>
+
+								</li>
+					
+						
+								
+								
+								<li class="nav-item ">
+									<a href="{{ path('app_reservation_admin_index') }}" class="nav-link"><img src="{{ asset('images/reserve.png') }}" width="20" height="20"  alt="">&nbsp; Réservations </a>
+                                    
+									</li>
+										
+								<li class="nav-item ">
+									<a href="{{ path('app_client_index') }}" class="nav-link"><img src="{{ asset('images/client.png') }}" width="20" height="20"  alt="">&nbsp; Clients</a>
+                                    
+									</li>	
+							
+							
+						</li>
+                        <li class="nav-item">
+							<a href={{ path('app_article_index') }} class="nav-link"><img src="{{ asset('images/offer.png') }}" width="20" height="20"  alt="">&nbsp;<span>Articles</span></a>
+
+							
+						</li>
+						 <li class="nav-item">
+							<a href="{{ path('app_categorie_index') }}" class="nav-link"><img src="{{ asset('images/categories.png') }}" width="20" height="20"  alt="">&nbsp; Catégories</a>
+								</li>
+								<li class="nav-item">
+							<a href={{ path('app_avis_index') }} class="nav-link"><img src="{{ asset('images/offer.png') }}" width="20" height="20"  alt="">&nbsp;<span>Les Avis</span></a>
+
+							
+						</li>
+									
+								
+									
+						
+								{% endif %}
+						
+						
+									
+								
+							{% if is_granted('ROLE_RESPONSABLE') %}
+                            
+                            <li class="nav-item">
+								
+								<a href="{{ path('app_responsable_dashbord') }}" class="nav-link"><img src="{{ asset('images/monitor.png') }}" width="20" height="20"  alt="">&nbsp; Dashboard</a>
+							</li>
+							<li class="nav nav-group-sub" data-submenu-title="Starter kit">
+								<li class="nav-item"><a href="{{ path('app_agent_index') }}" class="nav-link"><img src="{{ asset('images/man.png') }}" width="20" height="20"  alt="">&nbsp; Liste des Agents</a></li>
+									</li>
+								</li>
+								<li class="nav-item ">
+									<a href="{{ path('app_client_agence_index') }}" class="nav-link"><img src="{{ asset('images/client.png') }}" width="20" height="20"  alt="">&nbsp; Clients</a>
+                                    
+									</li>
+					<li class="nav-item nav-item-submenu">
+									<a href="app_offre_index" class="nav-link"><img src="{{ asset('images/offer.png') }}" width="20" height="20"  alt="">&nbsp; Offres</a>
+                                    
+									<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="{{path('app_omra_index')}}" class="nav-link"><img src="{{ asset('images/kaaba.png') }}" width="20" height="20"  alt="">&nbsp; Omra</a></li>
+									</ul>	
+									<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="{{path('app_croisiere_index')}}" class="nav-link"><img src="{{ asset('images/cruise.png') }}" width="20" height="20"  alt="">&nbsp; Croisière</a></li>	
+									</ul>
+										<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="{{path('app_voyage_organiser_index')}}" class="nav-link"> <img src="{{ asset('images/airplane.png') }}" width="20" height="20"  alt="">&nbsp; Voyage Organisé</a></li>	
+									</ul>
+									<ul class="nav nav-group-sub ">
+										<li class="nav-item"><a href="{{path('app_rondonnee_index')}}" class="nav-link"> <img src="{{ asset('images/trekking.png') }}" width="20" height="20"  alt="">&nbsp; Randonnée</a></li>
+									</ul>	
+									<ul class="nav nav-group-sub ">
+										<li class="nav-item"><a href="{{path('app_excursion_index')}}" class="nav-link"> <img src="{{ asset('images/trekking.png') }}" width="20" height="20"  alt="">&nbsp; Excursion</a></li>
+									</ul>	
+								
+								</li>
+                                    	<li class="nav-item ">
+									<a href={{ path('app_reservation_index') }} class="nav-link"><img src="{{ asset('images/reserve.png') }}" width="20" height="20"  alt="">&nbsp; Réservations </a>
+                                    
+									</li>
+									 <li class="nav-item">
+							<a href="{{ path('app_hotel_index') }}" class="nav-link"><img src="{{ asset('images/review.png') }}" width="20" height="20"  alt="">&nbsp; Hotels</a>
+								</li>
+								 <li class="nav-item">
+							<a href="{{ path('app_categorie_index') }}" class="nav-link"><img src="{{ asset('images/categories.png') }}" width="20" height="20"  alt="">&nbsp; Catégories</a>
+								</li>
+
+						
+							{% endif %}
+							 
+							{% if is_granted('ROLE_AGENT') %}
+                            <li class="nav-item">
+								
+								<a href="{{ path('app_agent_dashbord') }}" class="nav-link"><img src="{{ asset('images/monitor.png') }}" width="20" height="20"  alt="">&nbsp; Dashboard</a>
+							</li>
+							
+					
+                      <li class="nav-item nav-item-submenu">
+									<a href="app_offre_index" class="nav-link"><img src="{{ asset('images/offer.png') }}" width="20" height="20"  alt="">&nbsp; Offres</a>
+                                    
+									<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="{{path('app_omra_index')}}" class="nav-link"><img src="{{ asset('images/kaaba.png') }}" width="20" height="20"  alt="">&nbsp; Omra</a></li>
+									</ul>	
+									<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="{{path('app_croisiere_index')}}" class="nav-link"><img src="{{ asset('images/cruise.png') }}" width="20" height="20"  alt="">&nbsp; Croisière</a></li>	
+									</ul>
+										<ul class="nav nav-group-sub">
+										<li class="nav-item"><a href="{{path('app_voyage_organiser_index')}}" class="nav-link"> <img src="{{ asset('images/airplane.png') }}" width="20" height="20"  alt="">&nbsp; Voyage Organisé</a></li>	
+									</ul>
+									<ul class="nav nav-group-sub ">
+										<li class="nav-item"><a href="{{path('app_rondonnee_index')}}" class="nav-link"> <img src="{{ asset('images/trekking.png') }}" width="20" height="20"  alt="">&nbsp; Randonnée</a></li>
+									</ul>	
+									<ul class="nav nav-group-sub ">
+										<li class="nav-item"><a href="{{path('app_excursion_index')}}" class="nav-link"> <img src="{{ asset('images/trekking.png') }}" width="20" height="20"  alt="">&nbsp; Excursion</a></li>  
+									</ul>	
+								
+								</li>
+                                    	<li class="nav-item ">
+									<a href={{ path('app_reservation_index') }} class="nav-link"><img src="{{ asset('images/reserve.png') }}" width="20" height="20"  alt="">&nbsp; Réservations </a>
+                                    
+									</li>
+                                   <li class="nav-item">
+							<a href="{{ path('app_hotel_index') }}" class="nav-link"><img src="{{ asset('images/review.png') }}" width="20" height="20"  alt="">&nbsp; Hotels</a>
+								</li>
+						
+ <li class="nav-item">
+							<a href="{{ path('app_categorie_index') }}" class="nav-link"><img src="{{ asset('images/categories.png') }}" width="20" height="20"  alt="">&nbsp; Catégories</a>
+								</li>
+	<li class="nav-item ">
+									<a href="{{ path('app_client_agence_index') }}" class="nav-link"><img src="{{ asset('images/client.png') }}" width="20" height="20"  alt="">&nbsp; Clients</a>
+                                    
+									</li>
+{% endif %}
+								
+						</ul>
+					</div>
+					<!-- /main navigation -->
+				</div>
+				<!-- /sidebar content -->
+			</div>
+			<!-- /main sidebar -->
+
+
+			<!-- /page header -->
+			{% block nav %}{% endblock %}
+			<!-- Content area -->
+			
+			{% for message in app.flashes('success') %}
+			<div class="content"> 
+                      <div class="alert alert-success">
+                    <h1> {{ message }}</h1>
+   </div>
+      
+                {% endfor %}
+				
+      {% block content %}
+	  {% endblock %}
+	  <!-- /basic layout -->
+         <!-- Global stylesheets -->
+	
+				</div>
+			</div>
+		</body>
+	</html>
+</div>
+<!-- /page content -->
+</body>
+</html>

@@ -1,0 +1,273 @@
+{% extends 'base.html.twig' %}
+
+{% block titlepage %}Excursion{% endblock %}
+
+{% block content %}
+<div class="content">
+  
+              
+           
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white">Details de l'Excursion :{{excursion.titre}}</h3>
+                        <div class="header-elements"  >
+							 <a class="btn btn-dark" style="width:170px" href="{{ path('app_excursion_index') }}"><i class="icon-reply"></i> Liste des Excursions</a>
+	                	</div>
+
+                           </div><br>
+                           
+                           <div class="card">
+						
+							<div class="card-body">
+    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0"  ="grid" aria-describedby="DataTables_Table_0_info">
+  
+        <tbody>
+            
+           
+            <tr>
+                <th>Title</th>
+                <td>{{ excursion.titre }}</td>
+            </tr>
+           
+            <tr>
+             <th>pays</th>
+               <td>  {% for excursion in excursion.pays %}
+            
+              {{ excursion.nom}}--{% endfor %}</td>
+               
+            </tr>
+            <tr>
+                <th>Inclus</th>
+                <td>{{ excursion.inclus }}</td>
+            </tr>
+            <tr>
+                <th>Non_Inclus</th>
+                <td>{{ excursion.NonInclus }}</td>
+            </tr>
+        <tr>
+                                   <th>Images</th>
+                                  
+                                   <td>
+                            {% if app.request.attributes.get('_route') == 'app_excursion_show' %}
+  
+      
+        
+   {% for image in excursion.images %}
+            <div>
+           
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="90" height="90">
+
+                {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                
+            </div>
+        {% endfor %}
+        </td></tr>
+        {%endif%}
+        </tbody>
+    </table>
+       </div>
+        </div>
+       
+        
+          {% if formgrille is defined %}
+       
+      <div class="card-header header-elements-inline" style="background-color:Teal" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white"> Liste des GrilleTarifaires </h3>
+                        <div class="header-elements"  >
+							 <a href="#" data-toggle="modal" data-target="#grilles"class="btn btn-dark" style="width:100px"><i class="icon-user-plus"></i> Ajouter</a>
+	                	</div>
+					</div>
+                       <div class="card">
+						
+							<div class="card-body">
+	    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+        <thead>
+            <tr>
+                
+                <th>Date début</th>
+                <th>Date fin</th>
+                <th>Description</th>
+                <th>Prix</td>
+                 <th>Prix Enfant</td>
+                <th>Hotel</td>
+              
+                <th >action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for grilletarifaire in excursion.grilletarifaires %}
+            <tr>
+                
+                <td>{{ grilletarifaire.datedebut|date('Y/m/d') }}</td>
+                <td>{{ grilletarifaire.datefin|date('Y/m/d') }}</td>
+                <td>{{ grilletarifaire.description|raw }}</td>
+                <td>{{grilletarifaire.prix}}</td>
+                 <td>{{grilletarifaire.PrixEnfant}}</td>
+                   {% for g in grilletarifaire.hotel|slice(0,1)%}
+                <td>{{g.nom}}</td>
+                 {% endfor %}
+                 
+              
+                <td>
+                 <div class="modal fade" id="supprimer_grilletarifaire_{{ grilletarifaire.id }}" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4>Suppression</h4>
+                        <p>Êtes-vous sûr de vouloir supprimer  ?  la date debut {{ grilletarifaire.datedebut|date('Y/m/d') }}la date Fin  {{ grilletarifaire.datefin|date('Y/m/d') }}  et le prix{{ grilletarifaire.prix }}  </p>
+                   </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="btnNo" data-dismiss="modal">
+                            <i class="fa fa-ban" aria-hidden="true"></i> Annuler
+                        </button>
+                        <a href= "{{ path('grille_tarifaire_del', {'id': grilletarifaire.id}) }}" class="btn w-sm btn-danger remove_item">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>   
+                  <a style="width:40px;background-color:Red" data-toggle="modal" href="#supprimer_grilletarifaire_{{ grilletarifaire.id }}" class="btn btn-danger"><i class="icon-trash-alt"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+ 
+</div></div>
+{{ form_start(formgrille, {'attr': {'novalidate': 'novalidate','class': 'col-lg-12' }})}}
+	<div id="grilles" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 840px">
+		 <div class="card-body">
+            <div class="form-group row">
+                <label class="col-lg-2 col-form-label font-weight-semibold">Date Début</label>
+                            {{ form_widget(formgrille.dateDebut,{'attr': {'required' :'required','class': 'form-control col-lg-5','placeholder':'datedebut'}}) }}</div>
+			
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label font-weight-semibold">Date Fin</label>
+							  {{ form_widget(formgrille.dateFin, {'attr': {'required' :'required','class': 'form-control col-lg-5','type':'Date','placeholder':'datefin'}}) }}</div>
+            
+			            
+                      
+                        <div class="form-group row">
+                             <label class="col-lg-2 col-form-label font-weight-semibold">Hotel</label>
+							  {{ form_widget(formgrille.hotel, {'attr': {'required' :'required','class': 'form-control col-lg-6','placeholder':'hotelgrille'}}) }}</div>  
+             <div class="form-group row">
+                            <label class="col-lg-2 col-form-label font-weight-semibold">Prix</label>
+							  {{ form_widget(formgrille.prix, {'attr': {'required' :'required','class': 'form-control col-lg-6','placeholder':'prix'}}) }}</div>
+           <div class="form-group row">
+                            <label class="col-lg-2 col-form-label font-weight-semibold">Prix enfant</label>
+							  {{ form_widget(formgrille.PrixEnfant, {'attr': {'required' :'required','class': 'form-control col-lg-6','placeholder':'prix'}}) }}</div>
+           <div class="form-group row">
+                            <label class="col-lg-2 col-form-label font-weight-semibold">Description</label>
+							  {{ form_widget(formgrille.description, {'attr': {'required' :'required','class': 'form-control col-lg-6','placeholder':'description'}}) }}</div>
+				        <button type="submit" class="btn bg-success">Valider <i class="icon-checkmark ml-2"></i></button>
+		    </div>
+                          
+		</div>
+	</div>
+  
+        {{ form_end(formgrille) }}
+
+	 </div>
+{%endif%}
+    
+
+
+
+
+<div class="card-header header-elements-inline" style="background-color:Teal" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white"> Liste des Reservations </h3>
+                       
+					</div>
+                       <div class="card">
+						
+							<div class="card-body">
+
+						
+                    
+    <form method="POST" action="{{path('excursion_reservation')}}">
+  	    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+
+     
+        <thead>
+            <tr>
+            <th class="select-checkbox sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
+        
+                <th>Id</th>
+                <th>Date début</th>
+                <th>Date fin</th>
+                <th>Description</th>
+                <th>Prix</td>
+                <th>Hotel</td>
+                
+            </tr>
+
+        </thead>
+       
+	<script src="{{ asset('admin/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"> </script>
+	<script src="{{ asset('admin/global_assets/js/demo_pages/datatables_basic.js') }}"> </script>   
+
+        <tbody>
+        {% for grilletarifaire in excursion.grilletarifaires %}
+            <tr>
+                <td><center><input type="radio" name="grilletarifaire" value="{{ grilletarifaire.id }}"></center></td>
+              
+                <td>{{ grilletarifaire.id }}</td>
+                <td>{{ grilletarifaire.dateDebut|date('Y/m/d') }}</td>
+                <td>{{ grilletarifaire.dateFin|date('Y/m/d') }}</td>
+                 <td>{{grilletarifaire.description}}</td>
+                <td>{{grilletarifaire.prix}}</td>
+             {% for g in grilletarifaire.hotel|slice(0,1) %}
+                <td>{{g.nom}}</td>
+                 {% endfor %}
+                 
+                 {% endfor %} 
+                 </tbody>
+                 </table>
+                 </div></div>
+                 <div class="card">
+                 <div class="card-body">
+                   <h2>Client :</h2>
+                     <br>
+                <input type="hidden" name="offre" value="{{excursion.id}}" >
+                 
+               <br><br>
+                    <select name="client" class="">
+                        {% for client in clients %}
+                          <option value="{{client.id}}">{{client.nom}} {{client.prenom}}</option>
+                        {% endfor %}
+                 </select>
+                 </br>
+               
+                 </br> </br>
+              
+                <br>
+     <button type="submit" class="btn bg-success" style="width:100px;background-color:ForestGreen;"><i class="icon-checkmark ml-2"></i> Valider</button>
+                 </form>
+    
+   </div>
+		    </div>				<!-- /basic layout -->
+      </div>
+    
+    
+   
+    
+   				<!-- /basic layo
+
+     
+
+    
+   
+
+
+    
+   
+
+
+{% endblock %}

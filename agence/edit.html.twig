@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block titlepage %}Edit User{% endblock %}
+
+{% block content %}
+  <div class="content">
+
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;">
+						<h3 class="card-title" style="color:white">Modifier l'agence de voyage :{{agence.nom}}</h3>
+						<div class="header-elements">
+		
+							   <a class="btn btn-dark" style="width:210px" href="{{ path('app_agence_index') }}"> <i class="icon-reply"></i>Liste des Agences de voyages</a>
+	                	</div>
+					</div>
+					<br />
+   	<div class="card">
+							
+							<div class="card-body">
+
+    {{ include('agence/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+   
+{% endblock %}

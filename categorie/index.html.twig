@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% block style %}{% endblock %}
+{% block titlepage %}Offre index{% endblock %}
+
+{% block script %}
+	<script src="{{ asset('admin/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"> </script>
+	<script src="{{ asset('admin/global_assets/js/demo_pages/datatables_basic.js') }}"> </script>   
+{% endblock %}
+
+{% block content %}
+
+   <div class="content">
+  
+              
+           
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white">Liste des Catégories</h3>
+                        <div class="header-elements"  >
+                        {% if is_granted('ROLE_ADMIN') %}
+							 <a class="btn btn-dark" style="width:150px" href="{{ path('app_categorie_new') }}"><i class="icon-user-plus"></i> Ajouter Catégorie</a>
+
+						
+				{% endif %}
+	                	</div>
+                           </div>
+                           
+                           <div class="card">
+						
+							<div class="card-body">
+    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                 <th></th>
+            
+                <th>Titre</th>
+            <th></th>
+                <th colspan="3">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td>{{ categorie.id }}</td>
+                <td>{{ categorie.type }}</td>
+                <td></td>
+                <td>{{ categorie.title }}</td>
+         <td></td>
+                <td>
+                {% if is_granted('ROLE_ADMIN') %}
+										{{ include('categorie/show.html.twig') }}
+                     <a class="btn edit btn-info"  href="{{ path('app_categorie_edit', {'id': categorie.id}) }}"style="width:40px"><i class="icon-pencil"></i></a>
+                    {{ include('categorie/_delete_form.html.twig') }}
+										{%endif%}
+{% if is_granted('ROLE_RESPONSABLE') %}
+										  {{ include('categorie/show.html.twig') }}
+									</td>
+									{% endif %}
+                                    {% if is_granted('ROLE_AGENT') %}
+                  {{ include('categorie/show.html.twig') }}				{% endif %}
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

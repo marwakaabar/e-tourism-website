@@ -1,0 +1,45 @@
+<a class="btn edit btn-warning" type="button"  data-toggle="modal" data-target="#exampleModalCenter{{ categorie.id }}" href="{{ path('app_categorie_show', {'id': categorie.id}) }}"style="width:40px"><i class="icon-eye2"></i></a>
+
+
+
+
+<div class="modal fade right" id="exampleModalCenter{{ categorie.id }}"  role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal-content">
+       
+      <div class="modal-body">
+                   <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel"><i class="ti-marker-alt m-r-10" ></i> {{ categorie.description }}</h5> 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                   </div>
+                   
+     
+              <table class="table">
+        <tbody>
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ categorie.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ categorie.type }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ categorie.title }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+   </div>
+      
+    </div>
+  </div>
+</div>

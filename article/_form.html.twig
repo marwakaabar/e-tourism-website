@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+<div class="content">
+					
+				
+					<br />
+   	<div class="card">
+							
+							<div class="card-body">
+                            
+    {# Si la route est "annonces_edit on affiche les images #}
+	{% if app.request.attributes.get('_route') == 'app_article_edit' %}
+  
+          <div class="col-sm-10">
+
+        {% for image in  article.images %}
+           
+    
+             
+              
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+      
+
+  <a class="btn edit btn-danger"  href ='{{path('image_delete_article',{id: image.id}) }}' ><i class="icon-trash-alt"></i></a>           
+      
+        {% endfor %}
+  
+      </div>
+      </div></div>
+    {% endif %}
+    <button  class="btn btn-success" style="width:100px;margin-left: 90%;position: relative;"  > <i class="icon-floppy-disk"></i> {{ button_label|default('Valider') }}</button>
+{{ form_end(form) }}

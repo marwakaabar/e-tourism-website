@@ -1,0 +1,18 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+                            
+    {# Si la route est "annonces_edit on affiche les images #}
+	{% if app.request.attributes.get('_route') == 'app_agence_edit' %}
+  
+      
+            <div>
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="300" height="300">
+
+                {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                <a href="#" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>
+            </div>
+      
+    {% endif %}
+    <button  class="btn btn-success" style="width:100px;margin-left: 90%;position: relative;"  > <i class="icon-floppy-disk"></i> {{ button_label|default('Valider') }}</button>
+{{ form_end(form) }}

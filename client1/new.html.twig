@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block titlepage %}New Client{% endblock %}
+
+{% block content %}
+ <div class="content">
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;">
+						<h3 class="card-title" style="color:white">Ajout nouveau Client</h3>
+      <a class="btn btn-dark" style="width:170px" href="{{ path('app_client_index') }}"> <i class="icon-reply"></i>Liste des Clients</a>
+
+                           </div>
+                            <br />
+   	<div class="card">
+							
+							<div class="card-body">
+    {{ include('client1/_form.html.twig') }}
+
+
+{% endblock %}

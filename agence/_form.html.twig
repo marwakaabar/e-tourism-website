@@ -1,0 +1,31 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+<div class="content">
+					
+						<div class="header-elements">
+	                	</div>
+					</div>
+   
+						<div class="header-elements">
+	                	</div>
+				
+					<br />
+   	<div class="card">
+							
+							<div class="card-body">
+                            
+    {# Si la route est "annonces_edit on affiche les images #}
+	{% if app.request.attributes.get('_route') == 'app_agence_edit' %}
+  
+          {% for image in agence.images %}
+            <div>
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150" height="150">
+  <a class="btn edit btn-danger"  href ='{{path('image_delete_agence',{id: image.id}) }}' ><i class="icon-trash-alt"></i></a>           
+
+                {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+            </div>
+        {% endfor %}
+      
+    {% endif %}
+    <button  class="btn btn-info" style="width:100px;margin-left: 90%;position: relative;"  > <i class="icon-floppy-disk"></i> {{ button_label|default('Valider') }}</button>
+{{ form_end(form) }}

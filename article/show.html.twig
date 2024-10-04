@@ -1,0 +1,81 @@
+
+{% extends 'base.html.twig' %}
+
+{% block titlepage %}Article{% endblock %}
+   
+{% block content %}
+<div class="content">
+  
+              
+           
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white">Details du Article :{{article.title}}</h3>
+                        <div class="header-elements"  >
+							 <a class="btn btn-dark" style="width:150px" href="{{ path('app_article_index') }}"><i class="icon-reply"></i> Liste des articles</a>
+	                	</div>
+
+                           </div><br>
+                           
+                           <div class="card">
+						
+							<div class="card-body">
+    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0"  ="grid" aria-describedby="DataTables_Table_0_info">
+  
+        <tbody>
+            
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+             <tr>
+                <th>Type</th>
+                <td>{{ article.type }}</td>
+            </tr>
+           
+         
+           <tr>
+                <th>Title</th>
+                <td>{{ article.title }}</td>
+            </tr>
+            <tr>
+                <th>Date Création</th>
+                <td>{{ article.date|date('Y/m/d')  }}</td>
+            </tr>
+            <tr>
+                <th>Tags</th>
+                <td>{{ article.tags }}</td>
+            </tr>
+                   <tr>
+                <th>Description</th>
+                <td>{{ article.description|raw }}</td>
+            </tr>
+             <tr>
+                <th>Pays</th>
+                <td>{{ article.pays }}</td>
+            </tr>
+         <tr>
+                                   <th>Images</th>
+                                  
+                                   <td>
+                            {% if app.request.attributes.get('_route') == 'app_article_show' %}
+  
+      
+        
+   {% for image in article.images %}
+            <div>
+           
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="90" height="90">
+
+                {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                
+            </div>
+        {% endfor %}
+        </td></tr>
+        {%endif%}
+        </tbody>
+    </table>
+        </div>
+        </div>
+        </div>
+{%endblock%}

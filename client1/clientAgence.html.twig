@@ -1,0 +1,73 @@
+  {% extends 'base.html.twig' %}
+{% block style %}{% endblock %}
+{% block titlepage %}Article index{% endblock %}
+
+{% block script %}
+	<script src="{{ asset('admin/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"> </script>
+	<script src="{{ asset('admin/global_assets/js/demo_pages/datatables_basic.js') }}"> </script>   
+{% endblock %}
+
+{% block content %}
+ <div class="content">
+                     <div class="card-header header-elements-inline" style="background-color: indianred;" style="padding-bottom:230px">
+  
+						<h3 class="card-title" style="color:white">Liste des Clients</h3>
+                        <div class="header-elements"  >
+	                	</div>
+                           </div>
+                           <br>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="active-member">
+                                    <div class="table-responsive">
+                                        <table class="table table-xs mb-0">
+                                            <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+
+                                            <thead >            <tr>
+              <th>ID</th>
+                <th>nom</th>
+                <th>prenom</th>
+                <th>email</th>
+                      <th><center>adresse</center></th>
+                        <th><center>telephone</center></th>
+         
+           </div> </tr>
+        </thead>
+        <tbody>
+       
+        {% for reservation in reservations %}
+       
+            <tr>
+                <td>{{ reservation.client.id }}</td>
+                <td>{{ reservation.client.nom }}</td>
+                <td>{{ reservation.client.prenom }}</td>
+                
+                       <td>{{ reservation.client.email }}</td>
+              <td>{{ reservation.client.adresse }}</td>
+               
+       
+     
+             <td>{{ reservation.client.telephone }}</td>
+     
+       </center>
+               
+            </tr>
+            
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+              
+        {% endfor %}
+      
+        </tbody>
+    </table></div>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                    </div>
+                   </div>
+                    </div>
+                   {% endblock %}

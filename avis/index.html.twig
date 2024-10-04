@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block style %}{% endblock %}
+{% block titlepage %}Avis index{% endblock %}
+
+{% block script %}
+	<script src="{{ asset('admin/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"> </script>
+	<script src="{{ asset('admin/global_assets/js/demo_pages/datatables_basic.js') }}"> </script>   
+{% endblock %}
+
+{% block content %}
+
+   <div class="content">
+  
+              
+           
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white">Liste des Avis</h3>
+                       
+                           </div>
+                           
+                           <div class="card">
+						
+							<div class="card-body">
+    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+        <thead>
+            <tr>
+                <th>Id</th>
+        
+                <th>Note</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th colspan="3">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for avi in avis %}
+            <tr>
+                <td>{{ avi.id }}</td>
+               
+                <td>{{ avi.note }}</td>
+                <td>{{ avi.date ? avi.date|date('Y-m-d') : '' }}</td>
+                <td>{{ avi.statut ? 'Oui' : 'Non' }}</td>
+             
+                <td colspan="3">
+                <a class="btn edit btn-info"  href="{{ path('app_avis_show', {'id': avi.id}) }}"style="width:40px"><i class="icon-eye"></i></a>
+
+                     <a class="btn edit btn-warning"  href="{{ path('app_avis_edit', {'id': avi.id}) }}"style="width:40px"><i class="icon-pencil"></i></a>
+                 
+                   
+                  
+                </td>
+                   <td></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

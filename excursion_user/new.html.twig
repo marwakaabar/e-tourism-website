@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+
+{% block titlepage %}Nouveau Excursion {% endblock %}
+
+{% block content %}
+<div class="content">
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;">
+						<h3 class="card-title" style="color:white">Ajout nouveau Excursion</h3>
+      <a class="btn btn-dark" style="width:200px" href="{{ path('app_excursion_user_index') }}"> <i class="icon-reply"></i>Liste des Excursions</a>
+
+                           </div>
+                            <br />
+   	<div class="card">
+							
+							<div class="card-body">
+
+
+    {{ include('excursion_user/_form.html.twig') }}
+
+
+   
+{% endblock %}

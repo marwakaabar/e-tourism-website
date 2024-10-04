@@ -1,0 +1,610 @@
+<div id="content_wrapper">
+        <!--page title Start-->
+        <div class="page_title" data-stellar-background-ratio="0" data-stellar-vertical-offset="0" style="background-image:url(https://via.placeholder.com/1599x640);">
+          <ul>
+            <li><a href="javascript:;">Tour Destination</a></li>
+          </ul>
+        </div>
+        <!--page title end-->
+        <div class="clearfix"></div>
+        <div class="full_width destinaion_sorting_section">
+          <div class="container">
+            <div class="row space_100">
+              <!-- left sidebar start -->
+              <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="travelite_left_sidebar flghts_left_sidebar">
+                  <div class="sidebar_search_bar">
+                    <form>
+                      <input type="search" placeholder="Search" id="sidebar_search">
+                    </form>
+                  </div>
+                  <aside class="widget fligt_type_widget">
+                    <h4 class="widget-title">flight type</h4>
+                    <div class="travel_checkbox_round">
+                      <input type="checkbox" id="Business">
+                      <label for="Business">Business</label>
+                      <input type="checkbox" id="Economy">
+                      <label for="Economy">Economy</label>
+                      <input type="checkbox" id="First_Class">
+                      <label for="First_Class">First Class</label>
+                      <input type="checkbox" id="Premium">
+                      <label for="Premium">Premium</label>
+                    </div>
+                  </aside>
+                  <aside class="widget flight_name_widget">
+                    <h4 class="widget-title">Flight Name</h4>
+                    <div class="travel_checkbox_round">
+                      <input type="checkbox" id="Major_Airlines">
+                      <label for="Major_Airlines">Major Airlines (350)</label>
+                      <input type="checkbox" id="United_Airlines">
+                      <label for="United_Airlines">United Airlines (260)</label>
+                      <input type="checkbox" id="Delta_Airlines">
+                      <label for="Delta_Airlines">Delta Airlines (620)</label>
+                      <input type="checkbox" id="US_Airways">
+                      <label for="US_Airways">US Airways (520)</label>
+                      <input type="checkbox" id="Air_France">
+                      <label for="Air_France">Air France (500)</label>
+                      <input type="checkbox" id="Olympic">
+                      <label for="Olympic">Olympic (120)</label>
+                      <input type="checkbox" id="Emirates">
+                      <label for="Emirates">Emirates (280)</label>
+                    </div>
+                  </aside>
+                  <aside class="widget flight_time_widget">
+                    <h4 class="widget-title">flight times</h4>
+                    <div class="travel_checkbox_round">
+                      <input type="checkbox" id="lable_time_1">
+                      <label for="lable_time_1">5 am to 7am</label>
+                      <input type="checkbox" id="lable_time_2">
+                      <label for="lable_time_2">8pm to 10pm</label>
+                      <input type="checkbox" id="lable_time_3">
+                      <label for="lable_time_3">8 am to 10am</label>
+                      <input type="checkbox" id="lable_time_4">
+                      <label for="lable_time_4">11pm to 1am</label>
+                      <input type="checkbox" id="lable_time_5">
+                      <label for="lable_time_5">11am to 1 pm</label>
+                      <input type="checkbox" id="lable_time_6">
+                      <label for="lable_time_6">2am to 4pm</label>
+                      <input type="checkbox" id="lable_time_7">
+                      <label for="lable_time_7">5pm to 7pm</label>
+                    </div>
+                  </aside>
+                  <aside class="widget fligt_rating_widget">
+                    <h4 class="widget-title">Flight Ratings</h4>
+                    <div class="widget_ratings">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <span class="reviewrs_flight">3456 Reviews</span>
+                    </div>
+                  </aside>
+                  <aside class="widget modify_search_widget">
+                    <h4 class="widget-title">Modify Search</h4>
+                    <div class="travel_checkbox_round">
+                      <input type="checkbox" id="Round_trip">
+                      <label for="Round_trip">Round trip</label>
+                      <input type="checkbox" id="Multiple">
+                      <label for="Multiple">Multiple Destination</label>
+                      <input type="checkbox" id="One_way">
+                      <label for="One_way">One way</label>
+                    </div>
+                  </aside>
+                  <aside class="widget modify_search_widget_form">
+                    <div class="sidebar_form">
+                      <form>
+                        <div class="destination_field">
+                          <label>flying from</label>
+                          <input type="text" placeholder="CITY OR AIRPORT">
+                        </div>
+                        <div class="destination_field">
+                          <label>flying to</label>
+                          <input type="text" placeholder="CITY OR AIRPORT">
+                        </div>
+                        <div class="destination_field">
+                          <label>Check in date</label>
+                          <input type="text" id="flights_Check_in_date_tab" placeholder="mm/dd/yy">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="destination_field">
+                          <label>check out date</label>
+                          <input type="text" id="flights_Check_out_date_tab" placeholder="mm/dd/yy">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        <ul class="sidebar_select">
+                          <li class="select_field">
+                            <label>adult</label>
+                            <input id="spinner_adult" type="number" placeholder="1" name="spinner" class="input_spinner">
+                          </li>
+                          <li class="select_field">
+                            <label>child</label>
+                            <input id="spinner_child" type="number" placeholder="2" name="spinner" class="input_spinner">
+                          </li>
+                        </ul>
+                        <button type="submit" class="btn-travel btn-yellow">SEARCH</button>
+                      </form>
+                    </div>
+                  </aside>
+                </div>
+              </div>
+              <!-- left sidebar end -->
+              <!-- right main start -->
+              <div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="tour_packages_right_section left_space_40">
+                  <div class="full_width sorting_flight_panel">
+                    <label class="sort_by">Sort by:</label>
+                    <div class="sorting_destination">
+                      <select class="form-control selectpicker" id="search_name">
+                        <option value="1">name</option>
+                        <option value="2">john</option>
+                        <option value="3">marry</option>
+                        <option value="4">raj</option>
+                      </select>
+                     <i class="fa fa-chevron-down"></i>
+                    </div>
+                    <div class="sorting_destination">
+                      <select class="form-control selectpicker" id="search_price">
+                        <option value="rat1">Price</option>
+                        <option value="rat2">$100</option>
+                        <option value="rat3">$150</option>
+                        <option value="rat4">$200</option>
+                        <option value="rat5">$250</option>
+                      </select>
+                      <i class="fa fa-chevron-down"></i>
+                    </div>
+                    <div class="sorting_destination">
+                      <select class="form-control selectpicker" id="search_duration">
+                        <option value="1">Duration</option>
+                        <option value="2">1 Day</option>
+                        <option value="3">2 Day</option>
+                        <option value="4">3 Day</option>
+                      </select>
+                      <i class="fa fa-chevron-down"></i>
+                    </div>
+                    <div class="sorting_destination">
+                      <select class="form-control selectpicker" id="search_arrivals">
+                        <option value="1">Arrival</option>
+                        <option value="2">1</option>
+                        <option value="3">2</option>
+                        <option value="4">3</option>
+                      </select>
+                      <i class="fa fa-chevron-down"></i>
+                    </div>
+					<!-- sorting list -->
+                    <div class="pull-right sort_list_grid"> 
+                      <a href="Flights-Grid-with-sidebar.html"><i class="fa fa-th-large"></i></a> 
+                      <a href="Flights-List-view.html"><i class="fa fa-th-list active_sort"></i></a> 
+                    </div>
+					<!-- sorting list -->
+                  </div>
+                  <!--  sorting panel End -->
+                  <!-- sorting places section -->
+                  <div class="full_width hotel_list_sorting">
+				  
+                     <!--sort_list start -->
+                    <div class="sorting_places_wrap  list_sorting_view">
+                  <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 padding_none">
+                      <div class="thumb_wrape">
+           <a href="#">
+                        <img src="https://via.placeholder.com/349x258" alt="hotel thumb">
+                        <div class="overlay_title">
+                          <h4>emirates</h4>
+                        </div>
+            </a>
+                      </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                      <!-- Desc -->
+                      <div class="flight_grid_desc flight_list_desc">
+                        <!-- title start -->
+                        <div class="bottom_title">
+                          <h5><a href="#">australia</a></h5>
+                          <span class="flight_details">/ one way flight</span>
+                          <div class="right_span"><span class="doller">$150</span><br/><span>/person</span></div>
+             <!-- review start -->
+                        <div class="bottom_review_rating">
+                          <div class="rating_bottom"> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                          </div>
+                          <span class="review_right">
+                          <i class="fa fa-thumbs-up"></i> 52 Reviews
+                          </span> 
+                        </div>
+                        <!-- review End -->
+                        </div>
+                        <!-- title End -->
+                       
+                        <!-- flight schedule -->
+                        <div class="flight_details_schedule">
+                          <div class="take_off_landing">
+                            <h5>Take Off</h5>
+                            <p>20 Sep 2015 at 5.30am</p>
+                          </div>
+                          <div class="take_off_landing">
+                            <h5>Landing</h5>
+                            <p>22 Sep 2015 at 5.30am</p>
+                          </div>
+                        </div>
+                        <!-- flight schedule -->
+                        <div class="total_time_schedule">Total Time : 48 hours, 30 Minutes</div>
+                        <div class="list_button">
+                          <a href="#" class="btns">
+                          select now
+                          </a>
+                        </div> 
+                      </div><!--  Desc End -->
+                    </div> 
+                  </div>
+					 </div><!--sort_list end-->
+					  <!--sort_list start -->
+                    <div class="sorting_places_wrap  list_sorting_view">
+                  <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 padding_none">
+                      <div class="thumb_wrape">
+           <a href="#">
+                        <img src="https://via.placeholder.com/349x258" alt="hotel thumb">
+                        <div class="overlay_title">
+                          <h4>emirates</h4>
+                        </div>
+            </a>
+                      </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                      <!-- Desc -->
+                      <div class="flight_grid_desc flight_list_desc">
+                        <!-- title start -->
+                        <div class="bottom_title">
+                          <h5><a href="#">malaysia</a></h5>
+                          <span class="flight_details">/ one way flight</span>
+                          <div class="right_span"><span class="doller">$150</span><br/><span>/person</span></div>
+            <!-- review start -->
+                        <div class="bottom_review_rating">
+                          <div class="rating_bottom"> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                          </div>
+                          <span class="review_right">
+                          <i class="fa fa-thumbs-up"></i> 52 Reviews
+                          </span> 
+                        </div>
+                        <!-- review End -->
+                        </div>
+                        <!-- title End -->
+                        
+                        <!-- flight schedule -->
+                        <div class="flight_details_schedule">
+                          <div class="take_off_landing">
+                            <h5>Take Off</h5>
+                            <p>20 Sep 2015 at 5.30am</p>
+                          </div>
+                          <div class="take_off_landing">
+                            <h5>Landing</h5>
+                            <p>22 Sep 2015 at 5.30am</p>
+                          </div>
+                        </div>
+                        <!-- flight schedule -->
+                        <div class="total_time_schedule">Total Time : 48 hours, 30 Minutes</div>
+                        <div class="list_button">
+                          <a href="#" class="btns">
+                          select now
+                          </a>
+                        </div> 
+                      </div><!--  Desc End -->
+                    </div> 
+                  </div>
+					 </div><!--sort_list end-->
+					  <!--sort_list start -->
+                    <div class="sorting_places_wrap  list_sorting_view">
+                  <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 padding_none">
+                      <div class="thumb_wrape">
+            <a href="#">
+                        <img src="https://via.placeholder.com/349x258" alt="hotel thumb">
+                        <div class="overlay_title">
+                          <h4>emirates</h4>
+                        </div>
+            </a>
+                      </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                      <!-- Desc -->
+                      <div class="flight_grid_desc flight_list_desc">
+                        <!-- title start -->
+                        <div class="bottom_title">
+                          <h5><a href="#">thailand</a></h5>
+                          <span class="flight_details">/ one way flight</span>
+                          <div class="right_span"><span class="doller">$150</span><br/><span>/person</span></div>
+            <!-- review start -->
+                        <div class="bottom_review_rating">
+                          <div class="rating_bottom"> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                          </div>
+                          <span class="review_right">
+                          <i class="fa fa-thumbs-up"></i> 52 Reviews
+                          </span> 
+                        </div>
+                        <!-- review End -->
+                        </div>
+                        <!-- title End -->
+                        
+                        <!-- flight schedule -->
+                        <div class="flight_details_schedule">
+                          <div class="take_off_landing">
+                            <h5>Take Off</h5>
+                            <p>20 Sep 2015 at 5.30am</p>
+                          </div>
+                          <div class="take_off_landing">
+                            <h5>Landing</h5>
+                            <p>22 Sep 2015 at 5.30am</p>
+                          </div>
+                        </div>
+                        <!-- flight schedule -->
+                        <div class="total_time_schedule">Total Time : 48 hours, 30 Minutes</div>
+                        <div class="list_button">
+                          <a href="#" class="btns">
+                          select now
+                          </a>
+                        </div> 
+                      </div><!--  Desc End -->
+                    </div>
+                  </div> 
+					 </div><!--sort_list end-->
+					  <!--sort_list start -->
+                    <div class="sorting_places_wrap  list_sorting_view">
+                   <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 padding_none">
+                      <div class="thumb_wrape">
+           <a href="#">
+                        <img src="https://via.placeholder.com/349x258" alt="hotel thumb">
+                        <div class="overlay_title">
+                          <h4>emirates</h4>
+                        </div>
+            </a>
+                      </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7">
+                      <!-- Desc -->
+                      <div class="flight_grid_desc flight_list_desc">
+                        <!-- title start -->
+                        <div class="bottom_title">
+                          <h5><a href="#">vietnam</a></h5>
+                          <span class="flight_details">/ one way flight</span>
+                          <div class="right_span"><span class="doller">$150</span><br/><span>/person</span></div>
+            <!-- review start -->
+                        <div class="bottom_review_rating">
+                          <div class="rating_bottom"> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                            <i class="fa fa-star"></i> 
+                          </div>
+                          <span class="review_right">
+                          <i class="fa fa-thumbs-up"></i> 52 Reviews
+                          </span> 
+                        </div>
+                        <!-- review End -->
+                        </div>
+                        <!-- title End -->
+                        
+                        <!-- flight schedule -->
+                        <div class="flight_details_schedule">
+                          <div class="take_off_landing">
+                            <h5>Take Off</h5>
+                            <p>20 Sep 2015 at 5.30am</p>
+                          </div>
+                          <div class="take_off_landing">
+                            <h5>Landing</h5>
+                            <p>22 Sep 2015 at 5.30am</p>
+                          </div>
+                        </div>
+                        <!-- flight schedule -->
+                        <div class="total_time_schedule">Total Time : 48 hours, 30 Minutes</div>
+                        <div class="list_button">
+                          <a href="#" class="btns">
+                          select now
+                          </a>
+                        </div> 
+                      </div><!--  Desc End -->
+                    </div>
+                   </div> 
+					 </div><!--sort_list end-->
+					  <!--sort_list start -->
+                    <div class="sorting_places_wrap  list_sorting_view">
+                    <div class="row">
+                      <div class="col-lg-5 col-md-5 col-sm-5 padding_none">
+                        <div class="thumb_wrape">
+						 <a href="#">
+                          <img src="https://via.placeholder.com/349x258" alt="hotel thumb">
+                          <div class="overlay_title">
+                            <h4>emirates</h4>
+                          </div>
+						  </a>
+                        </div>
+                      </div>
+                      <div class="col-lg-7 col-md-7 col-sm-7">
+                        <!-- Desc -->
+                        <div class="flight_grid_desc flight_list_desc">
+                          <!-- title start -->
+                          <div class="bottom_title">
+                            <h5><a href="#">dubai</a></h5>
+                            <span class="flight_details">/ one way flight</span>
+                            <div class="right_span"><span class="doller">$150</span><br/><span>/person</span></div>
+							<!-- review start -->
+                          <div class="bottom_review_rating">
+                            <div class="rating_bottom"> 
+                              <i class="fa fa-star"></i> 
+                              <i class="fa fa-star"></i> 
+                              <i class="fa fa-star"></i> 
+                              <i class="fa fa-star"></i> 
+                              <i class="fa fa-star"></i> 
+                            </div>
+                            <span class="review_right">
+                            <i class="fa fa-thumbs-up"></i> 52 Reviews
+                            </span> 
+                          </div>
+                          <!-- review End -->
+                          </div>
+                          <!-- title End -->
+                          
+                          <!-- flight schedule -->
+                          <div class="flight_details_schedule">
+                            <div class="take_off_landing">
+                              <h5>Take Off</h5>
+                              <p>20 Sep 2015 at 5.30am</p>
+                            </div>
+                            <div class="take_off_landing">
+                              <h5>Landing</h5>
+                              <p>22 Sep 2015 at 5.30am</p>
+                            </div>
+                          </div>
+                          <!-- flight schedule -->
+                          <div class="total_time_schedule">Total Time : 48 hours, 30 Minutes</div>
+                          <div class="list_button">
+                            <a href="#" class="btns">
+                            select now
+                            </a>
+                          </div> 
+                        </div><!--  Desc End -->
+                      </div> 
+                    </div>
+					 </div><!--sort_list end-->
+					  <!--sort_list start -->
+                    <div class="sorting_places_wrap  list_sorting_view">
+                    <div class="row">
+                      <div class="col-lg-5 col-md-5 col-sm-5 padding_none">
+                        <div class="thumb_wrape">
+						 <a href="#">
+                          <img src="https://via.placeholder.com/349x258" alt="hotel thumb">
+                          <div class="overlay_title">
+                            <h4>emirates</h4>
+                          </div>
+						  </a>
+                        </div>
+                      </div>
+                      <div class="col-lg-7 col-md-7 col-sm-7">
+                        <!-- Desc -->
+                        <div class="flight_grid_desc flight_list_desc">
+                          <!-- title start -->
+                          <div class="bottom_title">
+                            <h5><a href="#">abu dhabi</a></h5>
+                            <span class="flight_details">/ one way flight</span>
+                            <div class="right_span"><span class="doller">$150</span><br/><span>/person</span></div>
+							<!-- review start -->
+                          <div class="bottom_review_rating">
+                            <div class="rating_bottom"> 
+                              <i class="fa fa-star"></i> 
+                              <i class="fa fa-star"></i> 
+                              <i class="fa fa-star"></i> 
+                              <i class="fa fa-star"></i> 
+                              <i class="fa fa-star"></i> 
+                            </div>
+                            <span class="review_right">
+                            <i class="fa fa-thumbs-up"></i> 52 Reviews
+                            </span> 
+                          </div>
+                          <!-- review End -->
+                          </div>
+                          <!-- title End -->
+                          
+                          <!-- flight schedule -->
+                          <div class="flight_details_schedule">
+                            <div class="take_off_landing">
+                              <h5>Take Off</h5>
+                              <p>20 Sep 2015 at 5.30am</p>
+                            </div>
+                            <div class="take_off_landing">
+                              <h5>Landing</h5>
+                              <p>22 Sep 2015 at 5.30am</p>
+                            </div>
+                          </div>
+                          <!-- flight schedule -->
+                          <div class="total_time_schedule">Total Time : 48 hours, 30 Minutes</div>
+                          <div class="list_button">
+                            <a href="#" class="btns">
+                            select now
+                            </a>
+                          </div> 
+                        </div><!--  Desc End -->
+                      </div> 
+                    </div>
+					 </div><!--sort_list end-->
+					 
+                    <!-- sorting places section -->
+                    <!-- pagination section -->
+                    <div class="full_width pagination_bottom">
+                      <ul class="pagination">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                      </ul>
+                    </div>
+                    <!-- pagination section -->
+                  </div>
+                </div>
+                <!-- right main start -->
+              </div>
+            </div>
+          </div>
+          </div><!--content body end--> 
+          <!--footer start-->
+          <footer id="footer_wrapper">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <aside class="widget widget_text">
+                    <a href="Home_01.html"><img src="assets/svg/Logo.svg" alt="footer logo" /></a> 
+                    <p>In 2015, We launched Travellers with the belief that other travellers would share our desire to experience authentic adventures in a responsible and sustainable manner. <br>
+                      <br>
+                      We've grown from a one-man show to a company of over 50 world wide, and from a handful of trips in all over the world.
+                    </p>
+                    <a href="">Read More <i class="fa fa-angle-right"></i></a> 
+                  </aside>
+                  <aside class="widget widget_tag_cloud">
+                    <h4 class="widget-title">Tags</h4>
+                    <div class="tagcloud"> <a href="">Travel</a> <a href="">Booking</a> <a href="">Hotels</a> <a href="">Cars</a> <a href="">Flights</a> <a href="">Tours</a> </div>
+                  </aside>
+                </div>
+                <div class="col-md-4">
+                  <aside class="widget widget_recent_entries">
+                    <h4 class="widget-title">Recent Posts</h4>
+                    <ul>
+                      <li> <img src="https://via.placeholder.com/91x81" alt="Recent blog">
+                        <div>
+                          <p>Nunc cursus libero purus ac congue arcu cursus..</p>
+                          <a href="">Read More</a> </div>
+                      </li>
+                      <li> <img src="https://via.placeholder.com/91x81" alt="Recent blog">
+                        <div>
+                          <p>Nunc cursus libero purus ac congue arcu cursus..</p>
+                          <a href="">Read More</a> </div>
+                       </li>
+                    </ul>
+                  </aside>
+                  <aside class="widget widget_links">
+                    <h4 class="widget-title">Useful Links</h4>
+                    <ul>
+                      <li><a href="">Travellers</a></li>
+                      <li><a href="">Support Center</a></li>
+                      <li><a href="">My Account</a></li>
+                      <li><a href="">Forum</a></li>
+                      <li><a href="">Special Offers</a></li>
+                      <li><a href="">Events Ready</a></li>
+                    </ul>
+                  </aside>
+                </div>

@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block style %}{% endblock %}
+{% block titlepage %}Article index{% endblock %}
+
+{% block script %}
+	<script src="{{ asset('admin/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"> </script>
+	<script src="{{ asset('admin/global_assets/js/demo_pages/datatables_basic.js') }}"> </script>   
+{% endblock %}
+
+{% block content %}
+
+   <div class="content">
+  
+              
+           
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white">Liste des Clients</h3>
+                        <div class="header-elements"  >
+                        {% if is_granted('ROLE_AGENT') %}
+							
+                             <a class="btn btn-dark" style="width:150px" href="{{ path('app_client_new') }}"><i class="icon-user-plus"></i> Ajouter Client</a>
+	               {% elseif is_granted('ROLE_RESPONSABLE')%}
+                                                <a class="btn btn-dark" style="width:150px" href="{{ path('app_client_new') }}"><i class="icon-user-plus"></i> Ajouter Client</a>
+
+                    {% endif %}
+                       
+                        </div>
+                           </div>
+                           
+                           <div class="card">
+						
+							<div class="card-body">
+    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th><center>actions</center></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.prenom }}</td>
+                <td>{{ client.adresse }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.telephone }}</td>
+                <td>
+                <center>
+                      {{ include('client1/show.html.twig') }} 
+</center>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

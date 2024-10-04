@@ -1,0 +1,23 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoumayaAbderahmen/plateforme_E-Tourism.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SoumayaAbderahmen/plateforme_E-Tourism/issues"
+  },
+  "homepage": "https://github.com/SoumayaAbderahmen/plateforme_E-Tourism#readme",
+  "description": ""
+}

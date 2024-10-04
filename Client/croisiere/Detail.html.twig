@@ -1,0 +1,99 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+<div id="content_wrapper">
+	<!--page title Start-->{% for croisiere in croisiere|slice(0,1) %} 
+	{% for croisiere in croisiere.pays|slice(0,1) %}
+	
+{% for image in croisiere.images|slice(0, 1) %}
+																<p><img src="{{ asset('/uploads/'~image.name) }}" alt="Reserver" width="1599" height="640" >
+																<a</a href="javascript:;" {% for croisiere in croisiere|slice(0,1) %} <h4> {% for croisiere in croisiere.pays|slice(0,1) %} {{ croisiere.nom}} </h4>></li>
+				{% endfor %}{% endfor %}
+																<p>
+
+															{% endfor %}
+	
+		
+{% endfor %}{% endfor %}
+	</div>
+
+		<!--page title end-->
+<div class="full_width travelite_world_section">
+		<div class="container">
+			<div class="row">
+			<div class="travelite_destinaion_main">
+				<div class="heading_team">
+					<h3>Croisière</h3>
+			
+				</div>
+			</div>	
+				
+					<div class="row">
+					{% for croisiere in croisiere %}
+					{%if croisiere.statut=="activer"%}
+							   <!-- first ractangle start -->
+							   <div class="col-lg-6 col-md-6 col-sm-6">
+							   
+								<div class=" full_width destination_box_wrapper">
+								
+					<div class="portfolio-row">
+		   <div class="portfolio_column_3_popup">
+				<div class="portfolio-content">
+   
+                    <h2 class="portfolio-title"> <a href="{{ path('app_package_Details_croisiere',{'id':croisiere.id}) }}">
+						<figure>
+
+						
+							
+								{% for image in croisiere.images|slice(0, 1) %}
+																<p><img src="{{ asset('/uploads/'~image.name) }}" alt="Reserver" width="624" height="478" >
+																<p>
+
+															{% endfor %}
+															
+															 
+				</figure>
+				</a></h2>
+                  </div>
+                  <!-- End .portfolio-meta --> 
+              
+								<div class="full_width offer_inner_desc">
+								
+								<div class="desc_left_inner"><span><a href="#" style="color:orange;font-size:25px" >{{croisiere.agence}}</span></a> /<span style="font-size:18px;">{{ croisiere.titre }}</span></div>
+								<div class="desc_right_inner">{% for grilletarifaire in croisiere.grilletarifaires|slice(0,1) %}
+																		{{grilletarifaire.prix}}
+																		TND /<span>{% set difference = date(grilletarifaire.datefin).diff(grilletarifaire.datedebut).format('%d') %}
+            {{ difference }} Jours {%endfor%}</span></div>
+								</div>
+						 </div>
+						</div>
+						<!-- first ractangle End -->
+						 </div>
+						</div>
+								{% endif %}
+								{% endfor %}
+											<div class="row space_100">
+						<div class="d-flex justify-content-center">
+					{{ knp_pagination_render(croisiere,'pagination.html.twig') }}
+				</div>
+					</div>
+			</div>
+					
+					</div> <!-- travelite_destinaion_main end -->
+			
+			</div>
+		</div>
+		
+	</div>
+
+	
+			  
+			  </div>
+		  </div>
+		  
+    </div> 
+	  
+<!--  -->
+	  <!-- subscribe section start -->
+	
+<!-- subscribe section End -->
+  </div>{% endblock %}

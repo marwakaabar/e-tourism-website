@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+
+
+	
+{% block content %}
+<script src="{{ asset('admin/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"> </script>
+	<script src="{{ asset('admin/global_assets/js/demo_pages/datatables_basic.js') }}"> </script>   
+
+ <div class="content">
+  
+              
+           
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white">Details de l'agence :{{agence.nom}}</h3>
+                        <div class="header-elements"  >
+							 <a class="btn btn-dark" style="width:150px" href="{{ path('app_agence_index') }}"><i class="icon-user-plus"></i> Liste des Agences</a>
+	                	</div>
+
+                           </div><br>
+                           
+                           <div class="card">
+						
+							<div class="card-body">
+    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0"  ="grid" aria-describedby="DataTables_Table_0_info">
+  
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ agence.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ agence.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ agence.description|raw }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ agence.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ agence.email }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ agence.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ agence.reference }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ agence.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Facebook</th>
+                <td>{{ agence.facebook }}</td>
+            </tr>
+            <tr>
+                <th>Instagram</th>
+                <td>{{ agence.instagram }}</td>
+            </tr>
+       
+
+   
+                            
+                            <tr>
+                                   <th>Images</th>
+                                  
+                                   <td>
+                            {% if app.request.attributes.get('_route') == 'app_agence_show' %}
+  
+      
+        
+   {% for image in agence.images %}
+            <div>
+           
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="90" height="90">
+
+                {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                
+            </div>
+        {% endfor %}
+        </td></tr>
+        {%endif%}
+        </tbody>
+    </table>
+        </div>
+         </div>
+         
+        {% block script %}
+	<script src="{{ asset('admin/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"> </script>
+	<script src="{{ asset('admin/global_assets/js/demo_pages/datatables_basic.js') }}"> </script>   
+{% endblock %}
+           <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+<h3 class="card-title" style="color:white">Details de l'agence :{{agence.nom}}</h3>
+                        <div class="header-elements"  >
+							 <a class="btn btn-dark" style="width:150px" href="{{ path('app_agence_index') }}"><i class="icon-user-plus"></i> Liste des Agences</a>
+	                	</div>
+
+                           </div><br>
+                           
+                           <div class="card">
+						
+							<div class="card-body">
+        <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+        
+        <thead>
+            <tr>
+              
+                <th>Nom</th>
+                <th>Prenom</th>
+                
+                <th>agence</th>
+            
+               
+          
+                <th>Email</th>
+                    <th>Role</th>
+                <th colspan="4">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+       
+        {% for user in users %}
+
+            <tr>
+            
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{% if user.agence is not null %}{{ user.agence.nom }}{% endif %}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                 <td colspan="4">
+                     {{ include('agent/show.html.twig') }}
+                   
+                </td>
+            </tr>
+          
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+              
+        {% endfor %}
+      
+        </tbody>
+    </table>
+{% endblock %}

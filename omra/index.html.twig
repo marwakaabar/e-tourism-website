@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+{% block style %}{% endblock %}
+{% block titlepage %}Omra index{% endblock %}
+
+{% block script %}
+	<script src="{{ asset('admin/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"> </script>
+	<script src="{{ asset('admin/global_assets/js/demo_pages/datatables_basic.js') }}"> </script>   
+{% endblock %}
+
+{% block content %}
+
+   <div class="content">
+  
+              
+           
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white">Liste des Omras</h3>
+                        <div class="header-elements"  >
+							 <a class="btn btn-dark" style="width:150px" href="{{ path('app_omra_new') }}"><i class="icon-user-plus"></i> Ajouter Omra</a>
+	                	</div>
+                           </div>
+                           
+                           <div class="card">
+						
+							<div class="card-body">
+    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+        <thead>
+            
+            <tr>
+                     <th>ID</th>
+                <th>Titre</th>
+
+                <th>Agence </th>
+              
+               <th colspan="2"><center>Images</center></th>
+               <th></th>
+                <th colspan="3"><center>actions</center></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for omra in omras %}
+            <tr>
+                   <td>{{ omra.id }}</td>
+                <td>{{ omra.titre }}</td>
+               
+                
+              
+                <td>{{ omra.agence }}</td>
+           <td colspan="2">
+                 <center>
+                {% for image in omra.images|slice(0, 1) %}
+               <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+                      
+        {% endfor %}
+       </center>
+               </td>
+             <td></td>
+                <td colspan="3">
+                <center>
+                   <a class="btn edit btn-info"  href="{{ path('app_omra_show', {'id': omra.id}) }}"style="width:40px"><i class="icon-eye2"></i></a>
+
+                     <a class="btn edit btn-warning"  href="{{ path('app_omra_edit', {'id': omra.id}) }}"style="width:40px"><i class="icon-pencil"></i></a>
+                    {{ include('omra/_delete_form.html.twig') }}
+                    </center>
+            </td>
+            </tr>
+               
+        {% else %}
+        
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+             
+        {% endfor %}
+        </tbody>
+    </table>
+  
+    
+
+
+{% endblock %}

@@ -1,0 +1,52 @@
+
+{% extends 'base.html.twig' %}
+
+{% block titlepage %}Avis{% endblock %}
+   
+{% block content %}
+<div class="content">
+  
+              
+           
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white">Details du Avis du client :{{avi.client.nom}} {{avi.client.prenom}}</h3>
+                        <div class="header-elements"  >
+							 <a class="btn btn-dark" style="width:150px" href="{{ path('app_avis_index') }}"><i class="icon-reply"></i> Liste des avis</a>
+	                	</div>
+
+                           </div><br>
+                           
+                           <div class="card">
+						
+							<div class="card-body">
+    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0"  ="grid" aria-describedby="DataTables_Table_0_info">
+  
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ avi.id }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ avi.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ avi.note }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ avi.date ? avi.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ avi.statut ? 'Oui' : 'Non' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+        </div>
+        </div>
+{%endblock%}

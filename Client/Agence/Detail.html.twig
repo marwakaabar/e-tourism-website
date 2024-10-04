@@ -1,0 +1,67 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+<div
+	id="content_wrapper">
+	<!--page title Start-->
+	<br>
+	<br>
+	<div class="travelite_destinaion_main">
+		<div class="heading_team">
+			<h3 style="margin-top:3%">Les Agences de Voyages</h3>
+		</div>
+	</div>
+
+
+	<!--page title end-->
+	<div class="clearfix"></div>
+
+	<div class="full_width destinaion_sorting_section">
+		<div class="container">
+			<div<a <!-- right main start --> <div class="col-lg-12 col-md-12 col-sm-12"> <div class="tour_packages_right_section right_space_40"> <div class="tour_packages_description"> </div> <!-- sorting panel End --> <!-- sorting places section --> <div class="full_width sorting_places_section"> {% for agence in agence %} <div class="sorting_places_wrap list_sorting_view" style="margin-right: 100px; margin-left: 100px;"> <div class="row" style="display:contents;"> <div class="col-lg-5 col-md-5 col-sm-5 padding_none"> <div class="thumb_wrape"> {% for image in agence.images|slice(0,1) %} <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="349" height="264"> {% endfor %} </div> </div> <div class="col-lg-7 col-md-7 col-sm-7"> <div class="pd_left"> <div class="top_head_bar"> <h4><a href="#">{{ agence.nom }}</a>
+		</h4>
+
+	</div>
+	<div class="bottom_desc">
+		<h5>{{ agence.telephone }}<span>
+
+				
+
+
+			</span>
+
+		</h5>
+		<!-- desc icons Start-->
+		<h5>{{ agence.email }}</h5>
+		<!-- desc icons End-->
+
+	</div>
+	{{ agence.description|raw }}
+</div>
+<ul class="sort_place_icons" style="margin-left:100">
+
+	<li>
+		<a href="{{ agence.facebook }}">
+			<i class="fa fa-facebook"></i>
+		</a>
+	</li>
+
+	<li>
+		<a href="{{ agence.instagram }}">
+			<i class="fa fa-instagram"></i>
+		</a>
+	</li>
+
+	<li>
+		<a href="{{ agence.instagram }}">
+			<i class="fa fa-twitter"></i>
+		</a>
+	</li>
+
+	<li>
+		<a href="#">
+			<i class="fa fa-whatsapp"></i>
+		</a>
+	</li>
+
+
+</ul></div></div></div><!--sort_list start end-->{% endfor %}<center><div class="row space_100"><div style="margin-left:150%">{{ knp_pagination_render(agence,'pagination.html.twig') }}</div></div></center></div></div> </div> </div><!--  --><!-- subscribe section start --> <!-- subscribe section End --></div>{% endblock %}

@@ -1,0 +1,56 @@
+<a class="btn edit btn-info" type="button"  data-toggle="modal" data-target="#exampleModalCenter{{ user.id }}" href="{{ path('app_agent_show', {'id': user.id}) }}"style="width:40px"><i class="icon-eye2"></i></a>
+
+
+
+
+<div class="modal fade right" id="exampleModalCenter{{ user.id }}"  role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal-content">
+       
+      <div class="modal-body">
+                   <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+
+                    <h5 class="modal-title" id="myModalLabel"><i class="ti-marker-alt m-r-10" ></i> {{ user.nom }} </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                   </div>
+                   
+     
+             <table class="table">
+        <tbody>
+         
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ user.telephone }}</td>
+            </tr>
+          
+           
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+              <th>Role</th>
+                              <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+
+        </tbody>
+    </table>
+
+   
+  </div>
+      
+    </div>
+  </div>
+</div>

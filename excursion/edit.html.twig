@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block titlepage %}Modifier Excursion{% endblock %}
+
+{% block content %}
+
+<div class="content">
+
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;">
+						<h3 class="card-title" style="color:white">Modifier Excursion</h3>
+						<div class="header-elements">
+							 <a class="btn btn-dark" style="width:170px" href="{{ path('app_excursion_index') }}"> <i class="icon-reply"></i>Liste des Excursions</a>
+
+	                	</div>
+					</div>
+					<br />
+   	<div class="card">
+							
+							<div class="card-body">
+    {{ include('excursion/_form.html.twig', {'button_label': 'Modifier'}) }}
+  
+   
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block script %}
+	<script src="{{ asset('admin/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"> </script>
+	<script src="{{ asset('admin/global_assets/js/demo_pages/datatables_basic.js') }}"> </script>   
+{% endblock %}
+
+{% block content %}
+
+   <div class="content">
+  
+              
+           
+   <div class="card-header header-elements-inline" style="background-color: #007682b5;" style="padding-bottom:100px">
+  
+						<h3 class="card-title" style="color:white">Liste des Agences</h3>
+                        <div class="header-elements"  >
+							 <a class="btn btn-dark" style="width:150px" href="{{ path('app_agence_new') }}"><i class="icon-user-plus"></i> Ajouter Agence</a>
+	                	</div>
+
+                           </div><br>
+                           
+                           <div class="card">
+						
+							<div class="card-body">
+    <table class="table datatable-basic dataTable no-footer" id="DataTables_Table_0"  ="grid" aria-describedby="DataTables_Table_0_info">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+             
+                <th>Telephone</th>
+                <th>Email</th>
+                
+               
+               
+           
+               <th>Images</th>
+                <th colspan="3">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for agence in agences %}
+            <tr>
+                 <td>{{ agence.ID }}</td>
+                <td>{{ agence.nom }}</td>
+                
+                <td>{{ agence.telephone }}</td>
+                <td>{{ agence.email }}</td>
+               
+               
+          
+                <td colspan="2"><center>
+                {% for image in agence.images|slice(0,1) %}
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+                                {% endfor %}
+                                <center></td>
+                <td colspan="">
+ <a class="btn edit btn-info"  href="{{ path('app_agence_show', {'id': agence.id}) }}"style="width:40px"><i class="icon-eye2"></i></a>
+                     <a class="btn edit btn-warning"  href="{{ path('app_agence_edit', {'id': agence.id}) }}"style="width:40px"><i class="icon-pencil"></i></a>
+                {{ include('agence/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

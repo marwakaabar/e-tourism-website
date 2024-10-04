@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+	<div
+		id="content_wrapper">
+		<!--page title start-->
+		<div class="travelite_destinaion_main">
+		<div class="heading_team">
+			<h3 style="margin-top:3%">Les Articles</h3>
+		</div>
+	</div>
+		<!--page title end-->
+		<div class="clearfix"></div>
+		<div class="container">
+			<div class="row push-down-100">
+
+				<div class="col-md-14">
+					<div class="post_wrapper">
+
+						<div class="travel_post">
+
+
+							{% for article in articles %}
+								<div class="travel_post">
+									<h3>{{ article.title }}</h3>
+									<div class="travel_meta">
+										<ul>
+
+											<li>
+												<a href="">
+													<i class="fa fa-flag"></i>
+													{{ article.pays.nom }}</a>
+											</li>
+											<li>{{ article.date|date('d/M')  }}</li>
+											<li>
+												<i class="fa fa-tags"></i>
+												<a href="">{{ article.tags }}</a>,
+												<a href="">Place</a>,
+												<a href="">Offre</a>,
+												<a href="">Pays</a>
+											</li>
+										</ul>
+									</div>
+									{% for image in article.images|slice(0, 1) %}
+										<img src="{{ asset('/uploads/'~image.name) }}" alt="" width="801" height="310">
+
+									{% endfor %}
+									<p class="more_text">{{ article.description|raw }}</p>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+									<div class="row space_100">
+						<div class="d-flex justify-content-center">
+					{{ knp_pagination_render(articles,'pagination.html.twig') }}
+				</div>
+		</div>
+	</div>
+	{% endblock %}
